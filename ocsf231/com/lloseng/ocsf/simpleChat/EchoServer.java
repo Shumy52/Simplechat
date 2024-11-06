@@ -72,19 +72,28 @@ public class EchoServer extends AbstractServer
         try
         {
             if(message.startsWith("#")){
+
                 message=message.substring(1).trim();
+
                 if(message.equals("close")){
                     close();
                 }
-                if(message.equals("start")){
+                else if(message.equals("start")){
                     listen();
                 }
-                if(message.startsWith("setport")){
-                    String portString = message.substring(7).trim();
-                    int port = Integer.parseInt(portString);
-                    setPort(port);
+                else if(message.startsWith("setport")){
+                    if(getNumberOfClients()!=0 || isListening())
+                    {
+                        console.display("Changing port is not allowed while clients are connected or while listening");
+                    }
+                    else
+                    {
+                        String portString = message.substring(7).trim();
+                        int port = Integer.parseInt(portString);
+                        setPort(port);
+                    }
                 }
-                if(message.equals("getport")){
+                else if(message.equals("getport")){
                     console.display("Port is: " + getPort());
                 }
                 else{

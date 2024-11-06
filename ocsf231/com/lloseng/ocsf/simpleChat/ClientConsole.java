@@ -43,18 +43,18 @@ public class ClientConsole implements ChatIF
      */
     public ClientConsole(String host, int port)
     {
-        try
-        {
+//        try
+//        {
             client= new ChatClient(host, port, this);
 
-            System.out.println("Connection established! Fire at will!");
-        }
-        catch(IOException exception)
-        {
-            System.out.println("Initial attempt at connection failed. ");
-            System.out.println("Use #login to try again");
-//            exception.printStackTrace();
-        }
+            System.out.println("Client online. Use #login to connect to a server");
+//        }
+//        catch(IOException exception)
+//        {
+//            System.out.println("Initial attempt at connection failed. ");
+//            System.out.println("Use #login to try again");
+////            exception.printStackTrace();
+//        }
     }
 
 
@@ -119,7 +119,7 @@ public class ClientConsole implements ChatIF
             host = "localhost";
             port = DEFAULT_PORT;
         }
-        System.out.println("Connecting to " + host + ":" + port);
+        System.out.println("Defaults are " + host + ":" + port);
         ClientConsole chat= new ClientConsole(host, port);
         chat.accept();  //Wait for console data
     }

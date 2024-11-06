@@ -43,11 +43,10 @@ public class ChatClient extends AbstractClient
      */
 
     public ChatClient(String host, int port, ChatIF clientUI)
-            throws IOException
     {
         super(host, port); //Call the superclass constructor
         this.clientUI = clientUI;
-        openConnection();
+//        openConnection();
 
 
 //        scheduler.scheduleAtFixedRate(() -> {
@@ -100,6 +99,7 @@ public class ChatClient extends AbstractClient
                 }
                 else if(message.equals("logoff")){
                     closeConnection();
+                    clientUI.display("Bye bye");
                 }
                 else if(message.startsWith("sethost")){
                     setHost(message.substring(7).trim()); // MAY FAIL
@@ -109,7 +109,7 @@ public class ChatClient extends AbstractClient
                     setPort(port); // MAY FAIL
                 }
                 else if(message.equals("login")){
-                    openConnection();
+                    openConnection(); //THROWS IO
                     clientUI.display("Connection back up!");
                 }
                 else if(message.equals("gethost")){
@@ -127,7 +127,8 @@ public class ChatClient extends AbstractClient
         }
         catch(IOException e)
         {
-            clientUI.display("Could not send message to server. Connection closed");
+            clientUI.display("Could not send message to server or connection failed.");
+            clientUI.display(e.getMessage());
         }
     }
 

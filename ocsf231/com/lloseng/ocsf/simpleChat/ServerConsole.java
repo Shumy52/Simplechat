@@ -55,7 +55,6 @@ public class ServerConsole implements ChatIF{
     public void display(String message) {
         System.out.println("Shumy@localhost> " + message);
     }
-    //TODO: IF IT BEGINS WITH SERVER MSG> remove it
 
     /**
      * This method is responsible for the creation of
@@ -86,9 +85,8 @@ public class ServerConsole implements ChatIF{
 //            System.out.println("ERROR - Could not listen for clients!");
 //        }
         ServerConsole console = new ServerConsole(port);
-        System.out.println("Server terminal online");
+        System.out.println("Server online. Standing by");
         console.accept();
-        System.out.println("Console is accepting commands");
     }
 
 
